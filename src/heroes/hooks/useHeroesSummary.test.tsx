@@ -4,6 +4,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { useHeroesSummary } from "./useHeroesSummary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { getSummaryAction } from "../actions/get-summary.action";
+import type { SummaryInformationResponse } from "../types/summary-information.respose";
 
 vi.mock('../actions/get-summary.action', () => ({
     getSummaryAction: vi.fn()
@@ -42,7 +43,7 @@ describe('useHeroesSummary', () => {
                 id: '1',
                 name: 'Superman'
             },
-            smartesHero: {
+            smartestHero: {
                 id: '2',
                 name: 'Batman'
             },
