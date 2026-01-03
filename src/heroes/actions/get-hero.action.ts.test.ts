@@ -5,7 +5,9 @@ describe('GetHeroAction', () => {
     test('should fetch hero data and return with complete image url', async () => {
         const result = await getHero('clark-kent')
         expect(result.image).toContain(`http`)
-        expect(result).toStrictEqual({
+
+        // Match the shape of the response but avoid asserting a fixed BASE_URL (CI may use a different API host)
+        expect(result).toMatchObject({
             id: '1',
             name: 'Clark Kent',
             slug: 'clark-kent',
@@ -24,12 +26,14 @@ describe('GetHeroAction', () => {
             speed: 9,
             durability: 10,
             team: 'Liga de la Justicia',
-            image: 'http://localhost:3001/images/1.jpeg',
             firstAppearance: '1938',
             status: 'Active',
             category: 'Hero',
             universe: 'DC'
         })
+
+        // Ensure the image path ends with the expected resource
+        expect(result.image).toMatch(/\/images\/1\.jpeg$/)
     });
     test('should throw an error if hero is not found', async () => {
         const idSlug = 'batman2'
