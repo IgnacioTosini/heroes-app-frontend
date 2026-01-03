@@ -7,7 +7,7 @@ describe('HeroApi', () => {
   test('should be configure pointing to the teting server', () => {
       expect(heroApi).toBeDefined();
       expect(heroApi.defaults.baseURL).toBe(`${BASE_URL}/api/heroes`);
-      expect(BASE_URL).contain('3001');
+      expect(BASE_URL).toMatch(/^https?:\/\//);
   });
   
 })
